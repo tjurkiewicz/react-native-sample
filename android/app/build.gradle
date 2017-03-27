@@ -84,9 +84,14 @@ def enableProguardInReleaseBuilds = false
 
 def computeVersionName() {
     def versionMajor = 1
-    def versionMinor = 0
     def buildNumber = Integer.valueOf(System.env.BUILD_NUMBER ?: 0)
-    return String.format('%d.%d.%d', versionMajor, versionMinor, buildNumber)
+    return String.format('%d.%d', versionMajor, buildNumber)
+}
+
+def computeVersionCode() {
+    def versionMajor = 1
+    def buildNumber = Integer.valueOf(System.env.BUILD_NUMBER ?: 0)
+    return (versionMajor<<16) + buildNumber
 }
 
 android {
@@ -97,7 +102,7 @@ android {
         applicationId "com.helloworld"
         minSdkVersion 16
         targetSdkVersion 22
-        versionCode 1
+        versionCode computeVersionCode()
         versionName computeVersionName()
         ndk {
             abiFilters "armeabi-v7a", "x86"
