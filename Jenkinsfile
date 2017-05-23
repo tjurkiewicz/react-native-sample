@@ -1,11 +1,7 @@
-pipeline {
-    agent any
+#!groovy
 
-    stages {
-        stage('Build d') {
-            steps {
-                npm install
-            }
-        }
+node {
+    stage('configFile Plugin') {
+        sh 'npm install'
     }
 }
