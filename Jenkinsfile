@@ -1,7 +1,8 @@
 #!groovy
 
 node {
-    stage('configFile Plugin') {
+    stage('Build') {
         sh 'npm install'
+
     }
 }
